@@ -6,6 +6,7 @@ public class test {
     private  String t_topic;
     private  String creat_time;
 
+
     public test(String t_type, String c_id, String t_topic, String creat_time) {
         this.t_type = t_type;
         this.c_id = c_id;
