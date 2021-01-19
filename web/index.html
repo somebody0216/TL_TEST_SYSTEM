@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .top {
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            border: 2px solid black;
+            color: blue;
+            font-weight: 800;
+            text-align: center;
+            background-color: burlywood;
+        }
+        
+        .left {
+            width: 15%;
+            height: 700px;
+            /* border: 2px solid black; */
+            float: left;
+            text-align: center;
+            /* margin-top: 4px; */
+            background-color: rgb(72, 72, 179,0.2);
+        }
+        
+        .right {
+            float: right;
+            width: 85%;
+            height: 700px;
+            /* border: 2px solid black; */
+            /* margin-top: 4px; */
+            background-color: rgb(204, 202, 202);
+        }
+        
+        .right>div {
+            width: 100%;
+            height: 100%;
+            background-color: rgb(204, 202, 202);
+            display: none;
+        }
+        
+        .left_ul {
+            width: 100%;
+            list-style: none;
+        }
+        
+        .left_ul>li {
+            text-align: center;
+            background-color: chocolate;
+            border-bottom: 2px solid gray;
+        }
+        
+        .childUl {
+            display: none;
+        }
+        
+        .childUl>li {
+            width: 100%;
+            background-color: indigo;
+            color: white;
+            cursor: pointer;
+            line-height: 30px;
+            border: 1px solid gray;
+        }
+        
+        h4 {
+            padding: 10px 0;
+            cursor: pointer;
+        }
+        
+        tr {
+            /*width: 100%;*/
+            /*height: 100px;*/
+            text-align: center;
+            height: 20px;
+            border-bottom: 1px solid black;
+        }
+        
+        td {
+            /*width: 33%;*/
+            height: 70px;
+            border: none;
+        }
+        
+        table {
+            width: 100%;
+            margin: auto;
+        }
+        
+        .box1 {
+            margin-bottom: 10px;
+        }
+        
+        .box2 {
+            margin-bottom: 5px;
+        }
+        
+        button {
+            margin-right: 10px;
+            background-color: cornflowerblue;
+            color: white;
+            width: 100px;
+            text-align: center;
+        }
+        
+        #table_classify {
+            margin: 0;
+        }
+        
+        #input1 {
+            background-color: rgb(204, 202, 202);
+            width: 100px;
+            outline: none;
+        }
+        
+        /*.classifyBox {*/
+        /*    height: 200px;*/
+        /*    border-bottom: 1px solid black;*/
+        /*}*/
+        
+        #plus {
+            margin-left: 5px;
+            margin-top: 5px;
+        }
+        .test_up{
+            width: 100%;
+            height: 5%;
+            background: beige;
+        }
+        .test_show{
+            width: 100%;
+            height:95%;
+            background: white;
+        }
+
+        .test_show>div{
+            width: 100%;
+            height: 100%;
+            /*background: red;*/
+            display: none;
+        }
+        #show1{
+            display: block;
+        }
+        .test_table{
+            width: 50%;
+        }
+        .test_table td{
+            height: 40px;
+        }
+        .leftPoint{
+            text-align: right;
+        }
+        .rightPoint{
+            text-indent: 1em;
+            text-align: left;
+        }
+        .test_classify{
+        width: 100%;
+        height: 5%;
+        }
+        .test_classify_box{
+            width: 100%;
+            height: 95%;
+        }
+
+        .test_classify_box>div{
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+        #test_classify_box1{
+            display: block;
+        }
+        #change_test{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 class="top">天亮在线考试系统</h2>
+    <div class="left">
+        <ul class="left_ul">
+            <li>
+                <h4>查看信息</h4>
+            </li>
+            <ul class="childUl">
+                <li id="xuesheng">学生信息</li>
+                <li id="kecheng">课程信息</li>
+            </ul>
+            <li>
+                <h4>题库管理</h4>
+            </li>
+            <ul class="childUl">
+                <li id="classify">试题分类</li>
+                <li id="test_manage">试题管理</li>
+
+            </ul>
+            <li>
+                <h4>下拉菜单3</h4>
+            </li>
+            <ul class="childUl">
+                <li>添加题库</li>
+            </ul>
+        </ul>
+    </div>
+    <div class="right">
+        <div class="xuesheng">
+
+            <table border="1" cellspacing="0" cellpadding="1" id="table_course">
+                <tr height="50px">
+                    <td></td>
+                    <td>学生编号</td>
+                    <td>学生姓名</td>
+                    <td>学生性别</td>
+                    <td>学生生日</td>
+                    <td>学生班级</td>
+                </tr>
+
+            </table>
+        </div>
+        <div class="kecheng">
+            <table border="1" cellspacing="0" cellpadding="1" id="table_student">
+                <tr height="50px">
+                    <td></td>
+                    <td>课程编号</td>
+                    <td>课程名称</td>
+                    <td>教师编号</td>
+                    <td>操作</td>
+                </tr>
+
+            </table>
+        </div>
+
+
+        <div>
+<!--            <div class="classifyBox">-->
+                <div class="box1">
+                    <span>添加类名：</span><input type="text" id="input1"><button id="plus">添加</button>
+
+                </div>
+                <div class="box2">
+                    <button onclick="selectAll()">全选</button><button onclick="selectOther()">反选</button><button onclick="delAll()">删除选中项</button>
+
+                </div>
+                <table cellspacing="0" cellpadding="1" id="table_classify">
+                    <tr height="50px">
+                        <td></td>
+                        <td>分类ID</td>
+                        <td>分类名称</td>
+                        <td>操作</td>
+                    </tr>
+
+                </table>
+<!--            </div>-->
+        </div>
+        <div>
+            <div class="test_up">
+                <button id="viewTest">查看试题</button>
+                <button id="addTest">添加试题</button>
+            </div>
+            <div  class="test_show">
+                                  <!--                查看试题-->
+                <div id="show1">
+                    <div>
+
+                        <div class="box2">
+                            <button onclick="selectAll()">全选</button><button onclick="selectOther()">反选</button><button onclick="delAll()">删除选中项</button>
+
+                        </div>
+                        <table cellspacing="0" cellpadding="1" id="table_test">
+                            <tr height="50px">
+                                <td></td>
+                                <td>题目类型</td>
+                                <td>试题分类</td>
+                                <td>试题内容</td>
+                                <td>增加时间</td>
+                                <td>管理</td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+                </div>
+                                   <!--                添加试题-->
+                <div id="add_test">
+                    <div class="test_classify">
+                        <table cellspacing="0" cellpadding="1" class="test_table">
+                            <tr>
+                                <td class="leftPoint">试题类型</td>
+                                <td class="rightPoint"><button class="test_classify_btn">单项选择题</button><button class="test_classify_btn">简答题</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="test_classify_box">
+                        <div id="test_classify_box1">
+                            <table cellspacing="0" cellpadding="1" class="test_table">
+
+                            <tr>
+                                <td class="leftPoint">试题内容</td>
+                                <td class="rightPoint"></td>
+                            </tr>
+                            <tr>
+                                <td class="leftPoint"></td>
+                                <td class="rightPoint"><textarea rows="3" cols="20" class="box1_get"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td class="leftPoint"></td>
+                                <td class="rightPoint">A</td>
+                            </tr>
+                            <tr>
+                                <td class="leftPoint"></td>
+                                <td class="rightPoint"><textarea class="box1_get"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td class="leftPoint"></td>
+                                <td class="rightPoint">B</td>
+                            </tr>
+                            <tr>
+                                <td class="leftPoint"></td>
+                                <td class="rightPoint"><textarea class="box1_get"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td class="leftPoint"></td>
+                                <td class="rightPoint">C</td>
+                            </tr>
+                            <tr>
+                                <td class="leftPoint"></td>
+                                <td class="rightPoint"><textarea class="box1_get"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td class="leftPoint"></td>
+                                <td class="rightPoint">D</td>
+                            </tr>
+                            <tr>
+                                <td class="leftPoint"></td>
+                                <td class="rightPoint"><textarea class="box1_get"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td class="leftPoint">正确答案</td>
+                                <td class="rightPoint"><input type="radio" name="rightAnswer" value="A">A
+                                    <input type="radio" name="rightAnswer" value="B">B
+                                    <input type="radio" name="rightAnswer" value="C">C
+                                    <input type="radio" name="rightAnswer" value="D">D
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="leftPoint">参考分数</td>
+                                <td class="rightPoint"><input type="text" value="1.0" class="box1_get"></td>
+                            </tr>
+                            <tr>
+                                <td class="leftPoint">试题分类</td>
+                                <td class="rightPoint"><select  class="classify_select box1_get"></select></td>
+                            </tr>
+
+                        </table>
+                            <div><button style="display:block;margin: 0 auto" id="box1_submit">提交</button></div>
+
+                        </div>
+                        <div id="test_classify_box2">
+                            <table cellspacing="0" cellpadding="1" class="test_table">
+
+                                <tr>
+                                    <td class="leftPoint">试题内容</td>
+                                    <td class="rightPoint"></td>
+                                </tr>
+                                <tr>
+                                    <td class="leftPoint"></td>
+                                    <td class="rightPoint"><textarea rows="3" cols="20" class="box2_get"></textarea></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="leftPoint">正确答案</td>
+                                    <td class="rightPoint"><textarea rows="3" cols="20" class="box2_get"></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="leftPoint">参考分数</td>
+                                    <td class="rightPoint"><input type="text" value="1.0"></td>
+                                </tr>
+                                <tr>
+                                    <td class="leftPoint">试题分类</td>
+                                    <td class="rightPoint"><select  class="classify_select box2_get"></select></td>
+                                </tr>
+
+                            </table>
+                            <div><button style="display:block;margin: 0 auto" id="box2_submit">提交</button></div>
+                    </div>
+                    </div>
+                </div>
+                                       <!--                修改试题-->
+                <div id="change_test">修改试题
+                    <div class="test_change_box">
+                        <div id="test_change_box1">
+                            <table cellspacing="0" cellpadding="1" class="test_table">
+
+                                <tr>
+                                    <td class="leftPoint">试题内容</td>
+                                    <td class="rightPoint"></td>
+                                </tr>
+                                <tr>
+                                    <td class="leftPoint"></td>
+                                    <td class="rightPoint"><textarea rows="3" cols="20" class="box1_change"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td class="leftPoint"></td>
+                                    <td class="rightPoint">A</td>
+                                </tr>
+                                <tr>
+                                    <td class="leftPoint"></td>
+                                    <td class="rightPoint"><textarea class="box1_change"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td class="leftPoint"></td>
+                                    <td class="rightPoint">B</td>
+                                </tr>
+                                <tr>
+                                    <td class="leftPoint"></td>
+                                    <td class="rightPoint"><textarea class="box1_change"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td class="leftPoint"></td>
+                                    <td class="rightPoint">C</td>
+                                </tr>
+                                <tr>
+                                    <td class="leftPoint"></td>
+                                    <td class="rightPoint"><textarea class="box1_change"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td class="leftPoint"></td>
+                                    <td class="rightPoint">D</td>
+                                </tr>
+                                <tr>
+                                    <td class="leftPoint"></td>
+                                    <td class="rightPoint"><textarea class="box1_change"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td class="leftPoint">正确答案</td>
+                                    <td class="rightPoint"><input type="radio" name="changerightAnswer" value="A">A
+                                        <input type="radio" name="changerightAnswer" value="B">B
+                                        <input type="radio" name="changerightAnswer" value="C">C
+                                        <input type="radio" name="changerightAnswer" value="D">D
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="leftPoint">参考分数</td>
+                                    <td class="rightPoint"><input type="text" value="1.0" class="box1_change"></td>
+                                </tr>
+                                <tr>
+                                    <td class="leftPoint">试题分类</td>
+                                    <td class="rightPoint"><select  class="classify_select box1_change"></select></td>
+                                </tr>
+
+                            </table>
+                            <div><button style="display:block;margin: 0 auto" id="box1_change">修改</button></div>
+
+                        </div>
+                        <div id="test_change_box2">
+                            <table cellspacing="0" cellpadding="1" class="test_table">
+
+                                <tr>
+                                    <td class="leftPoint">试题内容</td>
+                                    <td class="rightPoint"></td>
+                                </tr>
+                                <tr>
+                                    <td class="leftPoint"></td>
+                                    <td class="rightPoint"><textarea rows="3" cols="20" class="box2_change"></textarea></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="leftPoint">正确答案</td>
+                                    <td class="rightPoint"><textarea rows="3" cols="20" class="box2_change"></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="leftPoint">参考分数</td>
+                                    <td class="rightPoint"><input type="text" value="1.0" class="box2_change"></td>
+                                </tr>
+                                <tr>
+                                    <td class="leftPoint">试题分类</td>
+                                    <td class="rightPoint"><select  class="classify_select box2_change"></select></td>
+                                </tr>
+
+                            </table>
+                            <div><button style="display:block;margin: 0 auto" id="box2_change">修改</button></div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    </div>
+</body>
+<script src="js/jquery-3.5.1.js"></script>
+<script>
+
+
+
+<!--    左侧导航栏滑动效果-->
+    $(".left_ul>li").on("click", function() {
+        $(this).next().slideToggle();
+        $(".childUl").not($(this).next()).slideUp();
+    })
+
+    //左侧导航栏TAB切换
+    var title = $(".childUl>li");
+    var box = $(".right>div");
+    for (var i = 0; i < title.length; i++) {
+        title.eq(i).on("click", function() {
+            for (var j = 0; j < title.length; j++) {
+                if (title.eq(j).get(0) == $(this).get(0)) {
+                    box.eq(j).css("display", "block");
+                } else {
+                    box.eq(j).css("display", "none");
+                }
+            }
+
+
+        })
+    }
+
+    //试题栏TAB切换
+    var test_title=$(".test_up>button");
+    var test_box= $(".test_show>div");
+    for(var i=0;i<test_title.length;i++){
+        test_title.eq(i).on("click",function () {
+            for (var j = 0; j < test_title.length; j++){
+                if(test_title.eq(j).get(0)==$(this).get(0)){
+                    test_box.eq(j).css("display","block");
+                    $("#change_test").css("display","none");
+                }else {
+                    test_box.eq(j).css("display","none");
+                    $("#change_test").css("display","none");
+                }
+            }
+
+
+        })
+    }
+
+    //试题类型TAB切换
+    var test_classify_title=$(".test_classify_btn");
+    var test_classify_box= $(".test_classify_box>div");
+    for(var i=0;i<test_classify_title.length;i++){
+        test_classify_title.eq(i).on("click",function () {
+            for (var j = 0; j < test_classify_title.length; j++){
+                if(test_classify_title.eq(j).get(0)==$(this).get(0)){
+                    test_classify_box.eq(j).css("display","block");
+                }else {
+                    test_classify_box.eq(j).css("display","none");
+                }
+            }
+
+
+        })
+    }
+    // 添加分类
+    $("#plus").on("click", function() {
+        var value = $("#input1").val();
+        var jsonData = {};
+        jsonData.mark = "plusClassify";
+        jsonData.data = value;
+        $.ajax({
+            url: "http://localhost:8080/TL_TEST_SYSTEM/classifyServlet",
+            data: JSON.stringify(jsonData),
+            type: "post",
+            async:false,//false同步  true异步
+            contentType: "application/json",
+            dataType: "JSON",
+            success: function(result) {
+                if (result && result.mark2 == 1) {
+                    var tr = $("<tr>");
+                    tr.attr("class","remove1");
+                    var td1 = $("<td>");
+                    var checkBox = $("<input>");
+                    checkBox.attr("type", "checkBox");
+                    checkBox.attr("name", "haha");
+                    td1.append(checkBox);
+                    var td2 = $("<td>");
+                    td2.text(result.UUID);
+                    var td3 = $("<td>");
+                    td3.text(value);
+                    var td4 = $("<td>");
+                    var choose = $("<button>");
+                    choose.text("修改");
+                    choose.attr("class", "change1");
+                    var del = $("<button>");
+                    del.text("删除");
+                    del.attr("class", "del1");
+                    td4.append(choose);
+                    td4.append(del);
+                    tr.append(td1);
+                    tr.append(td2);
+                    tr.append(td3);
+                    tr.append(td4);
+                    $("#table_classify").append(tr);
+                }
+
+            }
+        })
+    })
+    //显示分类
+    $("#classify").on("click",function () {
+        // $("#table_classify")
+        var jsonData2 = {};
+        jsonData2.mark = "showClassify";
+        $.ajax({
+            url: "http://localhost:8080/TL_TEST_SYSTEM/classifyServlet",
+            data: JSON.stringify(jsonData2),
+            async:false,//false同步  true异步
+            type: "post",
+            contentType: "application/json",
+            dataType: "JSON",
+            success: function(result) {
+                $(".remove1").remove();
+                var array = result.mark1;
+                var k = result.mark1.length;
+                for (var i = 0; i < k; i++) {
+                    var tr = $("<tr>");
+                    tr.attr("class","remove1");
+                    var td1 = $("<td>");
+                    var checkBox = $("<input>");
+                    checkBox.attr("type", "checkBox");
+                    checkBox.attr("name", "haha");
+                    td1.append(checkBox);
+                    var td2 = $("<td>");
+                    td2.text(array[i].c_id);
+                    var td3 = $("<td>");
+                    td3.text(array[i].c_name);
+                    var td4 = $("<td>");
+                    var choose = $("<button>");
+                    choose.text("修改");
+                    choose.attr("class", "change1");
+                    var del = $("<button>");
+                    del.text("删除");
+                    del.attr("class", "del1");
+                    td4.append(choose);
+                    td4.append(del);
+                    tr.append(td1);
+                    tr.append(td2);
+                    tr.append(td3);
+                    tr.append(td4);
+                    $("#table_classify").append(tr);
+
+                }
+
+            }
+        })
+
+        $(".del1").on("click", function() {
+            // console.log("222")
+            $(this).parent().parent().remove();
+            var jsonData3={};
+            jsonData3.mark="delClassify";
+            jsonData3.uuid=$(this).parent().prev().prev().text();
+            // console.log($(this).parent().prev().text());
+            $.ajax({
+                url: "http://localhost:8080/TL_TEST_SYSTEM/classifyServlet",
+                data: JSON.stringify(jsonData3),
+                async:false,//false同步  true异步
+                type: "post",
+                contentType: "application/json",
+                dataType: "JSON",
+                success:function (result) {
+
+                }
+            })
+        })
+
+        $(".change1").on("click",function () {
+            var oldvalue=$(this).parent().prev().text();
+            // console.log(oldvalue);
+            $(this).parent().prev().html("<input type='text' value="+oldvalue+" class='newInput'>");
+            // $(this).parent().prev().children().val(oldvalue);
+            $(".newInput").on("blur",function () {
+                var newvalue=$(this).val();
+                $(this).parent().html(newvalue);
+                var jsonData4={};
+                jsonData4.mark="changeClassify";
+                jsonData4.newvalue=newvalue;
+                jsonData4.oldvalue=oldvalue;
+                $.ajax({
+                    url: "http://localhost:8080/TL_TEST_SYSTEM/classifyServlet",
+                    data: JSON.stringify(jsonData4),
+                    async:false,//false同步  true异步
+                    type: "post",
+                    contentType: "application/json",
+                    dataType: "JSON",
+                    success:function (result) {
+
+                    }
+                })
+            })
+        })
+    })
+    // 删除选中课程
+    function delAll() {
+        var k = 0;
+        var array = [];
+        var haha = document.getElementsByName("haha");
+        for (var i = 0; i < haha.length; i++) {
+            if (haha[i].checked == true) {
+                // table.removeChild(haha[i].parentElement.parentElement)
+                array[k++] = haha[i].parentElement.parentElement;
+
+            }
+
+        }
+        for (var i = 0; i < array.length; i++) {
+            $(array[i]).remove();
+        }
+    }
+    //全选
+    function selectAll() {
+        var haha = document.getElementsByName("haha");
+        for (var i = 0; i < haha.length; i++) {
+            haha[i].checked = true;
+        }
+    }
+    //反选
+    function selectOther() {
+        var haha = document.getElementsByName("haha");
+        for (var i = 0; i < haha.length; i++) {
+            haha[i].checked = !haha[i].checked;
+        }
+    }
+    //点击试题管理按钮添加option选项
+    $("#test_manage").on("click",function () {
+        var jsonData4 = {};
+        jsonData4.mark = "getClassifyName";
+        $.ajax({
+            url: "http://localhost:8080/TL_TEST_SYSTEM/classifyServlet",
+            data: JSON.stringify(jsonData4),
+            async:false,//false同步  true异步
+            type: "post",
+            contentType: "application/json",
+            dataType: "JSON",
+            success: function(result) {
+                // console.log("哈哈哈哈哈哈哈哈哈哈")
+                $(".classify_select").html("");
+                var array = result.mark3;
+                // console.log(array)
+                var k = result.mark3.length;
+                for (var i = 0; i < k; i++) {
+
+                    var opt=$("<option>");
+                    opt.val(array[i].c_name);
+                    opt.text(array[i].c_name);
+                    $(".classify_select").append(opt);
+
+                }
+
+            }
+        })
+    })
+    //    提交选择题信息
+    $("#box1_submit").on("click",function ()  {
+        var jsonData5={};
+        jsonData5.mark="getbox1";
+        jsonData5.data={};
+        //题目内容
+        jsonData5.data.content=$(".box1_get").eq(0).val();
+        // console.log(jsonData5.data.content)
+        //A选项
+        jsonData5.data.A=$(".box1_get").eq(1).val();
+        // console.log(jsonData5.data.A)
+        //B选项
+        jsonData5.data.B=$(".box1_get").eq(2).val();
+        // console.log(jsonData5.data.B)
+        //C选项
+        jsonData5.data.C=$(".box1_get").eq(3).val();
+        // console.log(jsonData5.data.C)
+        //D选项
+        jsonData5.data.D=$(".box1_get").eq(4).val();
+        // console.log(jsonData5.data.D)
+        //题目分类（语文/数学......）
+        jsonData5.data.classify=$(".box1_get").eq(6).val();
+        // console.log(jsonData5.data.classify)
+        //分数
+        jsonData5.data.score=1;
+        //题目类型（单选0 简答1）
+        jsonData5.data.type=0;
+        //正确答案
+        jsonData5.data.rightAnswer=$('input[name="rightAnswer"]:checked').val();
+        // console.log(jsonData5.data.rightAnswer)
+        $.ajax({
+            url: "http://localhost:8080/TL_TEST_SYSTEM/classifyServlet",
+            data: JSON.stringify(jsonData5),
+            async:false,//false同步  true异步
+            type: "post",
+            contentType: "application/json",
+            dataType: "JSON",
+            success: function(result) {
+                if(result&&result.mark4==1){
+                    alert("添加成功！")
+                }
+
+                }
+        })
+
+
+
+
+    })
+    //提交简答题信息
+    $("#box2_submit").on("click",function () {
+        var jsonData6={};
+        jsonData6.mark="getbox2";
+        jsonData6.data={}
+        jsonData6.data.content=$(".box2_get").eq(0).val();
+        jsonData6.data.rightAnswer=$(".box2_get").eq(1).val();
+        jsonData6.data.classify=$(".box2_get").eq(2).val();
+        jsonData6.data.score=1;
+        jsonData6.data.type=1;
+
+        $.ajax({
+            url: "http://localhost:8080/TL_TEST_SYSTEM/classifyServlet",
+            data: JSON.stringify(jsonData6),
+            async:false,//false同步  true异步
+            type: "post",
+            contentType: "application/json",
+            dataType: "JSON",
+            success: function(result) {
+                if(result&&result.mark5==1){
+                    alert("添加成功！")
+                }
+
+            }
+        })
+    })
+
+    //显示试题（点击左侧导航栏）
+    $("#test_manage").on("click",function () {
+
+        jsonData3={};
+        jsonData3.mark="showTest";
+        $.ajax({
+            url: "http://localhost:8080/TL_TEST_SYSTEM/classifyServlet",
+            data: JSON.stringify(jsonData3),
+            // async:false,//false同步  true异步
+            type: "post",
+            contentType: "application/json",
+            dataType: "JSON",
+            success: function(result) {
+                // console.log(result);
+                $(".remove2").remove();
+                var array = result.mark5;
+                var k = result.mark5.length;
+                for (var i = 0; i < k; i++) {
+                    var tr = $("<tr>");
+                    tr.attr("class","remove2");
+                    var td1 = $("<td>");
+                    var checkBox = $("<input>");
+                    checkBox.attr("type", "checkBox");
+                    checkBox.attr("name", "haha");
+                    td1.append(checkBox);
+
+                    var td2 = $("<td>");
+                    if(array[i].t_type==0){
+                        td2.text("选择题");
+                    }else{
+                        td2.text("简答题");
+                    }
+
+                    var td3 = $("<td>");
+                    td3.text(array[i].c_id);
+
+                    var td4 = $("<td>");
+                    td4.text(array[i].t_topic);
+
+                    var td5 = $("<td>");
+                    td5.text(array[i].creat_time);
+
+                    var td6 = $("<td>");
+                    var choose = $("<button>");
+                    choose.text("修改");
+                    choose.attr("class", "change2");
+                    var del = $("<button>");
+                    del.text("删除");
+                    del.attr("class", "del2");
+                    td6.append(choose);
+                    td6.append(del);
+
+                    tr.append(td1);
+                    tr.append(td2);
+                    tr.append(td3);
+                    tr.append(td4);
+                    tr.append(td5);
+                    tr.append(td6);
+                    $("#table_test").append(tr);
+
+                }
+                //删除试题
+                $(".del2").on("click",function () {
+                    $(this).parent().parent().remove();
+                    // console.log($(this).parent().parent())
+                    var jsonData={};
+                    jsonData.mark="delTest";
+                    jsonData.content=$(this).parent().prev().prev().text();
+                    $.ajax({
+                        url: "http://localhost:8080/TL_TEST_SYSTEM/classifyServlet",
+                        data: JSON.stringify(jsonData),
+                        async:false,//false同步  true异步
+                        type: "post",
+                        contentType: "application/json",
+                        dataType: "JSON",
+                        success:function (result) {
+                            // console.log("gggggggggggggggggggg")
+                            // console.log(result)
+
+                        }
+                    })
+                })
+
+
+                //修改试题
+                $(".change2").on("click",function () {
+                    var classify=$(this).parent().prev().prev().prev().prev().text();
+                    if(classify==="选择题"){
+                        $("#change_test").css("display","block");
+                        $("#add_test").css("display","none");
+                        $("#show1").css("display","none");
+                        $("#test_change_box1").css("display","block");
+                        $("#test_change_box2").css("display","none");
+                    }else{
+                        $("#change_test").css("display","block");
+                        $("#add_test").css("display","none");
+                        $("#show1").css("display","none");
+                        $("#test_change_box1").css("display","none");
+                        $("#test_change_box2").css("display","block");
+                    }
+                })
+            }
+        })
+    })
+    //显示试题（点击查看试题按钮）
+    $("#viewTest").on("click",function () {
+        jsonData3={};
+        jsonData3.mark="showTest";
+        $.ajax({
+            url: "http://localhost:8080/TL_TEST_SYSTEM/classifyServlet",
+            data: JSON.stringify(jsonData3),
+            // async:false,//false同步  true异步
+            type: "post",
+            contentType: "application/json",
+            dataType: "JSON",
+            success: function(result) {
+                // console.log(result);
+                $(".remove2").remove();
+                var array = result.mark5;
+                var k = result.mark5.length;
+                for (var i = 0; i < k; i++) {
+                    var tr = $("<tr>");
+                    tr.attr("class","remove2");
+                    var td1 = $("<td>");
+                    var checkBox = $("<input>");
+                    checkBox.attr("type", "checkBox");
+                    checkBox.attr("name", "haha");
+                    td1.append(checkBox);
+
+                    var td2 = $("<td>");
+                    if(array[i].t_type==0){
+                        td2.text("选择题");
+                    }else{
+                        td2.text("简答题");
+                    }
+
+                    var td3 = $("<td>");
+                    td3.text(array[i].c_id);
+
+                    var td4 = $("<td>");
+                    td4.text(array[i].t_topic);
+
+                    var td5 = $("<td>");
+                    td5.text(array[i].creat_time);
+
+                    var td6 = $("<td>");
+                    var choose = $("<button>");
+                    choose.text("修改");
+                    choose.attr("class", "change2");
+                    var del = $("<button>");
+                    del.text("删除");
+                    del.attr("class", "del2");
+                    td6.append(choose);
+                    td6.append(del);
+
+                    tr.append(td1);
+                    tr.append(td2);
+                    tr.append(td3);
+                    tr.append(td4);
+                    tr.append(td5);
+                    tr.append(td6);
+                    $("#table_test").append(tr);
+
+                }
+
+                $(".del2").on("click",function () {
+                    $(this).parent().parent().remove();
+                    // console.log($(this).parent().parent())
+                    var jsonData={};
+                    jsonData.mark="delTest";
+                    jsonData.content=$(this).parent().prev().prev().text();
+                    $.ajax({
+                        url: "http://localhost:8080/TL_TEST_SYSTEM/classifyServlet",
+                        data: JSON.stringify(jsonData),
+                        async:false,//false同步  true异步
+                        type: "post",
+                        contentType: "application/json",
+                        dataType: "JSON",
+                        success:function (result) {
+                            // console.log("gggggggggggggggggggg")
+                            // console.log(result)
+
+                        }
+                    })
+                })
+                //打开修改试题界面
+                var old_t_topic="";
+                $(".change2").on("click",function () {
+                    console.log("5555555555555555555")
+                    var classify=$(this).parent().prev().prev().prev().prev().text();
+                    old_t_topic=$(this).parent().prev().prev().text();
+                    console.log(old_t_topic);
+                    if(classify==="选择题"){
+                        $("#change_test").css("display","block");
+                        $("#add_test").css("display","none");
+                        $("#show1").css("display","none");
+                        $("#test_change_box1").css("display","block");
+                        $("#test_change_box2").css("display","none");
+
+                        // var jsonData5={};
+                        // jsonData5.mark="changebox1";
+                        // jsonData5.data={};
+                        // //题目内容
+                        // jsonData5.data.content=$(".box1_change").eq(0).val();
+                        // // console.log(jsonData5.data.content)
+                        // //A选项
+                        // jsonData5.data.A=$(".box1_change").eq(1).val();
+                        // // console.log(jsonData5.data.A)
+                        // //B选项
+                        // jsonData5.data.B=$(".box1_change").eq(2).val();
+                        // // console.log(jsonData5.data.B)
+                        // //C选项
+                        // jsonData5.data.C=$(".box1_change").eq(3).val();
+                        // // console.log(jsonData5.data.C)
+                        // //D选项
+                        // jsonData5.data.D=$(".box1_change").eq(4).val();
+                        // // console.log(jsonData5.data.D)
+                        // //题目分类（语文/数学......）
+                        // jsonData5.data.classify=$(".box1_change").eq(6).val();
+                        // // console.log(jsonData5.data.classify)
+                        // //分数
+                        // jsonData5.data.score=$(".box1_change").eq(5).val();
+                        //
+                        // //正确答案
+                        // jsonData5.data.rightAnswer=$('input[name="changerightAnswer"]:checked').val();
+                        // // console.log(jsonData5.data.rightAnswer)
+                        // $.ajax({
+                        //     url: "http://localhost:8080/TL_TEST_SYSTEM/classifyServlet",
+                        //     data: JSON.stringify(jsonData5),
+                        //     async:false,//false同步  true异步
+                        //     type: "post",
+                        //     contentType: "application/json",
+                        //     dataType: "JSON",
+                        //     success: function(result) {
+                        //         if(result&&result.mark4==1){
+                        //             alert("添加成功！")
+                        //         }
+                        //
+                        //     }
+                        // })
+                    }else{
+                        $("#change_test").css("display","block");
+                        $("#add_test").css("display","none");
+                        $("#show1").css("display","none");
+                        $("#test_change_box1").css("display","none");
+                        $("#test_change_box2").css("display","block");
+
+                        // var jsonData6={};
+                        // jsonData6.mark="getbox2";
+                        // jsonData6.data={}
+                        // jsonData6.data.content=$(".box2_change").eq(0).val();
+                        // jsonData6.data.rightAnswer=$(".box2_change").eq(1).val();
+                        // jsonData6.data.classify=$(".box2_change").eq(3).val();
+                        // jsonData6.data.score=$(".box2_change").eq(2).val();
+                        //
+                        //
+                        // $.ajax({
+                        //     url: "http://localhost:8080/TL_TEST_SYSTEM/classifyServlet",
+                        //     data: JSON.stringify(jsonData6),
+                        //     async:false,//false同步  true异步
+                        //     type: "post",
+                        //     contentType: "application/json",
+                        //     dataType: "JSON",
+                        //     success: function(result) {
+                        //         if(result&&result.mark5==1){
+                        //             alert("添加成功！")
+                        //         }
+                        //
+                        //     }
+                        // })
+
+                    }
+                })
+
+                //提交修改的选择题信息
+                $("#box1_change").on("click",function () {
+                    var jsonData5={};
+                    jsonData5.mark="changebox1";
+                    jsonData5.data={};
+                    //题目内容
+                    jsonData5.data.content=$(".box1_change").eq(0).val();
+                    // console.log(jsonData5.data.content)
+                    //A选项
+                    jsonData5.data.A=$(".box1_change").eq(1).val();
+                    // console.log(jsonData5.data.A)
+                    //B选项
+                    jsonData5.data.B=$(".box1_change").eq(2).val();
+                    // console.log(jsonData5.data.B)
+                    //C选项
+                    jsonData5.data.C=$(".box1_change").eq(3).val();
+                    // console.log(jsonData5.data.C)
+                    //D选项
+                    jsonData5.data.D=$(".box1_change").eq(4).val();
+                    // console.log(jsonData5.data.D)
+                    //题目分类（语文/数学......）
+                    jsonData5.data.classify=$(".box1_change").eq(6).val();
+                    // console.log(jsonData5.data.classify)
+                    //分数
+                    jsonData5.data.score=$(".box1_change").eq(5).val();
+
+                    //正确答案
+                    jsonData5.data.rightAnswer=$('input[name="changerightAnswer"]:checked').val();
+                    // console.log(jsonData5.data.rightAnswer)
+                    //原来的t_topic
+                    jsonData5.data.old_t_topic=old_t_topic;
+                    $.ajax({
+                        url: "http://localhost:8080/TL_TEST_SYSTEM/classifyServlet",
+                        data: JSON.stringify(jsonData5),
+                        async:false,//false同步  true异步
+                        type: "post",
+                        contentType: "application/json",
+                        dataType: "JSON",
+                        success: function(result) {
+                            if(result&&result.mark7==1){
+                                alert("添加成功！")
+                            }
+
+                        }
+                    })
+                })
+            }
+        })
+
+
+    //    删除题目
+    //     $(".del2").on("click",function () {
+    //         $(this).parent().parent().remove();
+    //         console.log($(this).parent().parent())
+    //         var jsonData={};
+    //         jsonData.mark="delTest";
+    //         jsonData.content=$(this).parent().prev().prev().text();
+    //         $.ajax({
+    //             url: "http://localhost:8080/TL_TEST_SYSTEM/classifyServlet",
+    //             data: JSON.stringify(jsonData),
+    //             async:false,//false同步  true异步
+    //             type: "post",
+    //             contentType: "application/json",
+    //             dataType: "JSON",
+    //             success:function (result) {
+    //                 console.log(result)
+    //
+    //             }
+    //         })
+    //     })
+    })
+
+
+</script>
+
+</html>
